@@ -66,9 +66,17 @@ class Route {
 	/**
 	 * Callback function.
 	 *
+	 * @param \WP_REST_Request $request Rest Request.
+	 *
 	 * @return \WP_REST_Response
 	 */
-	public function get_routes(): \WP_REST_Response {
+	public function get_routes( \WP_REST_Request $request ): \WP_REST_Response {
+		$nonce  = $request->get_param( '_nonce' );
+		$verify = wp_verify_nonce( $nonce, 'acj_wpcc_nonce_get' );
+		if ( ! $verify ) {
+			return rest_ensure_response( array() );
+		}
+
 		$routes = rest_get_server()->get_routes();
 		$list   = array();
 		foreach ( $routes as $route => $args ) {
@@ -180,9 +188,14 @@ class Route {
 	 * @return \WP_REST_Response
 	 */
 	public function save_config( \WP_REST_Request $request ): \WP_REST_Response {
-		$data  = $request->get_param( 'data' );
-		$route = $request->get_param( 'route' );
-		$key   = $this->string_md5( $route );
+		$data   = $request->get_param( 'data' );
+		$route  = $request->get_param( 'route' );
+		$key    = $this->string_md5( $route );
+		$nonce  = $request->get_param( '_nonce' );
+		$verify = wp_verify_nonce( $nonce, 'acj_wpcc_nonce_save' );
+		if ( ! $verify ) {
+			return rest_ensure_response( array() );
+		}
 
 		update_option( $key, $data );
 		delete_transient( $key );

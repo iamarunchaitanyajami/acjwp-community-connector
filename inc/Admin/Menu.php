@@ -35,10 +35,10 @@ class Menu {
 	 */
 	public function menu_page(): void {
 		add_menu_page(
-			'WPCC',
-			'WPCC',
+			__( 'ACJWPCC', 'acjwp-community-connector' ),
+			__( 'ACJWPCC', 'acjwp-community-connector' ),
 			'manage_options',
-			'WPCC',
+			'ACJWPCC',
 			array( $this, 'callback' ),
 			ACJ_WPCC_DIR_URL . '/assets/menu-logo.jpg',
 			6
@@ -51,6 +51,6 @@ class Menu {
 	 * @return void
 	 */
 	public function callback(): void {
-		echo '<div id="wpcc-ui">Testing</div>';
+		printf( '<div id="acjwpcc-ui">%s</div>', esc_attr( __( 'Testing', 'acjwp-community-connector' ) ) );
 	}
 }
