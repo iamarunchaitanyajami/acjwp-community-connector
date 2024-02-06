@@ -1,7 +1,7 @@
 === AcjWpCommunityConnector Translate ===
 - Contributors:      achaitanyajami, arunchaitanyajami, iamarunchaitanyajami
 - Tags:              plugin
-- Stable tag:        1.0.4
+- Stable tag:        1.0.5
 - Requires at least: 6.0
 - Requires PHP: 8.0
 - Tested up to: 6.4.2
@@ -11,7 +11,7 @@
 
 == Description ==
 
-This is a long description. No limit, and you can use Markdown (as well as in the following sections).
+This is a long description. No limit and you can use Markdown (as well as in the following sections).
 
 For backward compatibility, if this section is missing, the full length of the short description will be used, and
 Markdown parsed.
