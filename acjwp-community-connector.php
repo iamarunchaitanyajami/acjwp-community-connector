@@ -4,7 +4,7 @@
  * Plugin URI:        https://github.com/arunchaitanyajami/acjwp-community-connector
  * Requires WP:       6.0 ( Minimal )
  * Requires PHP:      8.0
- * Version:           1.0.7
+ * Version:           1.0.8
  * Author:            achaitanyajami
  * Text Domain:       acjwp-community-connector
  * Domain Path:       /language/
@@ -29,9 +29,9 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-$reports_route = apply_filters( 'acj_wpcc_reports_enpoint_route', 'reports' );
+$reports_route = apply_filters( 'acj_wpcc_reports_endpoint_route', 'reports' );
 
-define( 'ACJ_WPCC_PLUGIN_VERSION', '1.0.7' );
+define( 'ACJ_WPCC_PLUGIN_VERSION', '1.0.8' );
 define( 'ACJ_WPCC_DIR_PATH', plugin_dir_path( __FILE__ ) );
 define( 'ACJ_WPCC_DIR_URL', plugin_dir_url( __FILE__ ) );
 define( 'ACJ_WPCC_REPORTS_ENDPOINT', $reports_route );
@@ -112,9 +112,10 @@ function acj_wpcc_enqueue_scripts(): void {
 	}
 
 	$block_settings = array(
-		'ajaxUrl'    => esc_url( admin_url( 'admin-ajax.php', 'relative' ) ),
-		'nonce_save' => wp_create_nonce( 'acj_wpcc_nonce_save' ),
-		'nonce_get'  => wp_create_nonce( 'acj_wpcc_nonce_get' ),
+		'ajaxUrl'        => esc_url( admin_url( 'admin-ajax.php', 'relative' ) ),
+		'nonce_save'     => wp_create_nonce( 'acj_wpcc_nonce_save' ),
+		'nonce_get'      => wp_create_nonce( 'acj_wpcc_nonce_get' ),
+		'route_endpoint' => ACJ_WPCC_REPORTS_ENDPOINT,
 	);
 
 	/**
